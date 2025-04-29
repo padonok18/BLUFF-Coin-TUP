@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLUFF</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        * {
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Основной контент -->
+        <div class="main-content">
+            <!-- Главный экран -->
+            <div id="main" class="tab-content active">
+                <div class="header">
+                    <h1>BLUFF</h1>
+                    <div class="balance">Баланс: <span id="balance">0</span> токенов</div>
+                </div>
+
+                <div id="coin-container">
+                    <div id="coin"><img src="coin.png" alt="Монета"></div>
+                    <div id="minigame-container" style="display:none;"></div>
+                </div>
+
+                <div class="actions">
+                    <button id="daily-btn" class="btn">Ежедневный челлендж (50x)</button>
+                    <button id="collect-btn" class="btn" style="display:none;">Собрать <span id="auto-coins">0</span> токенов</button>
+                </div>
+
+                <div class="stats">
+                    <div>Автокликер: <span id="autoclicker-status">Неактивен</span></div>
+                    <div>Накоплено: <span id="offline-coins">0</span> токенов</div>
+                </div>
+            </div>
+
+            <!-- Экран друзей -->
+            <div id="friends" class="tab-content">
+                <h2>Реферальная система</h2>
+                <div class="referral">
+                    <p>Ваша ссылка:</p>
+                    <input type="text" id="referral-link" readonly>
+                    <button id="copy-btn" class="btn">Копировать</button>
+                </div>
+                <div class="referral-stats">
+                    <p>Приглашено друзей: <span id="friends-count">0</span></p>
+                    <p>Всего заработано: <span id="referral-earnings">0</span> токенов</p>
+                </div>
+                <div id="friends-list">
+                    <p id="no-friends-message">Вы еще никого не пригласили. Приглашайте друзей и получайте бонусы!</p>
+                    <div class="referral-motivation">
+                        <p>💎 За каждого друга получайте +1000 токенов!</p>
+                        <p>🔥 Чем больше друзей - тем больше награда!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Экран кошелька -->
+            <div id="wallet" class="tab-content">
+                <h2>TON Кошелёк</h2>
+                <div class="wallet-info">
+                    <p>Статус: <span id="wallet-status">Не подключен</span></p>
+                    <p>Адрес: <span id="wallet-address">-</span></p>
+                    <p>Баланс: <span id="ton-balance">0</span> TON</p>
+                </div>
+                <button id="connect-wallet" class="btn">Подключить кошелёк</button>
+                <button id="withdraw-btn" class="btn" disabled>Вывести токены</button>
+            </div>
+
+            <!-- Экран улучшений -->
+            <div id="upgrades" class="tab-content">
+                <h2>Улучшения</h2>
+                <div class="upgrade-item">
+                    <h3>Автокликер</h3>
+                    <p>Кликает каждые 2 секунды</p>
+                    <p>Цена: 2,500 токенов</p>
+                    <button id="buy-autoclicker" class="btn">Купить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Навигация внизу -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="main">Главная</button>
+            <button class="tab" data-tab="friends">Друзья</button>
+            <button class="tab" data-tab="wallet">Кошелёк</button>
+            <button class="tab" data-tab="upgrades">Улучшения</button>
+        </nav>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
+    <script src="game.js"></script>
+    
+    <script>
+        // Проверяем, что все загружено
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM fully loaded');
+            
+            // Проверяем основные элементы
+            const checkElements = ['coin', 'daily-btn', 'connect-wallet', 'buy-autoclicker'];
+            checkElements.forEach(id => {
+                if (!document.getElementById(id)) {
+                    console.error(`Element with id ${id} not found!`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

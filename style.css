@@ -1,0 +1,224 @@
+/* Добавляем в начало файла */
+html, body {
+    touch-action: manipulation;
+    user-scalable: no;
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Запрет масштабирования */
+@viewport {
+    width: device-width;
+    initial-scale: 1.0;
+    maximum-scale: 1.0;
+    minimum-scale: 1.0;
+    user-scalable: no;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.6;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.tabs {
+    display: flex;
+    background: #1e1e1e;
+    border-top: 1px solid #333;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 10px;
+    text-align: center;
+    border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+    border-bottom: 3px solid #0088cc;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.balance {
+    font-size: 1.3em;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+#coin-container {
+    position: relative;
+    margin: 30px auto;
+    width: 200px;
+    height: 200px;
+}
+
+#coin {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+#coin img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#coin:active {
+    transform: scale(0.95);
+}
+
+#minigame-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+}
+
+.falling-coin {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('falling-coin.pgn');
+    background-size: contain;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #0088cc;
+    color: white;
+    transition: all 0.3s;
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+}
+
+.btn:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #006699;
+    transform: translateY(-2px);
+}
+
+.stats {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.referral {
+    margin-bottom: 20px;
+}
+
+.referral-stats {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+#referral-link {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+}
+
+.referral-motivation {
+    background-color: rgba(0, 136, 204, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px dashed #0088cc;
+    font-size: 12px;
+}
+
+.friend-item {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.minigame-header {
+    text-align: center;
+    padding: 10px;
+}
+
+#timer {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#score {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
